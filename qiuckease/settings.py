@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     #Internal Apps
     'users',
+    'summarizer_api',
 ]
 
 MIDDLEWARE = [
