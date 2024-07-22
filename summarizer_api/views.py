@@ -19,3 +19,6 @@ def UploadFile(request):
     else:
         form = UploadFileForm()
     return render(request, '../templates/uploads.html', {'form': form})
+
+def UploadImage(request):
+    pass
