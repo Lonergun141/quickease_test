@@ -20,5 +20,5 @@ from summarizer_api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('summarizer_api.urls'))
+    path('text_summarizer/api/v1/', include('summarizer_api.urls'))
 ]
