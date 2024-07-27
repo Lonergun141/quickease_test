@@ -7,16 +7,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-with open("data/artificial_intelligence_wikipedia.txt", "r") as file:
-    artificial_intelligence_wikipedia_text = file.read()
-    
-encoding = tiktoken.encoding_for_model('gpt-4-turbo')
-len(encoding.encode(artificial_intelligence_wikipedia_text))
-
 client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
-def get_chat_completion(messages, model='gpt-4o-mini'):
+def get_chat_completion(messages, model='gpt-3.5-turbo-1106'):
     response = client.chat.completions.create(
         model=model,
         messages=messages,
@@ -25,7 +18,7 @@ def get_chat_completion(messages, model='gpt-4o-mini'):
     return response.choices[0].message.content
 
 def tokenize(text: str) -> List[str]:
-    encoding = tiktoken.encoding_for_model('gpt-4-turbo')
+    encoding = tiktoken.encoding_for_model('gpt-3.5-turbo-1106')
     return encoding.encode(text)
 
 

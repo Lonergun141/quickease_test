@@ -20,5 +20,7 @@ from summarizer_api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("api/v1/auth/", include('djoser.urls')),
+    path("api/v1/auth/", include('djoser.urls.jwt')),
     path('note_summarizer/api/v1/', include('summarizer_api.urls'))
 ]
