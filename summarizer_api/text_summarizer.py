@@ -3,7 +3,9 @@ from typing import List, Tuple, Optional
 from openai import OpenAI
 import tiktoken
 from tqdm import tqdm
+from dotenv import load_dotenv
 
+load_dotenv()
 
 
 with open("data/artificial_intelligence_wikipedia.txt", "r") as file:
@@ -12,9 +14,9 @@ with open("data/artificial_intelligence_wikipedia.txt", "r") as file:
 encoding = tiktoken.encoding_for_model('gpt-4-turbo')
 len(encoding.encode(artificial_intelligence_wikipedia_text))
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
-def get_chat_completion(messages, model='gpt-4-turbo'):
+def get_chat_completion(messages, model='gpt-4o-mini'):
     response = client.chat.completions.create(
         model=model,
         messages=messages,

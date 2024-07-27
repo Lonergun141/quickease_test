@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from .forms import UploadFileForm
 import pypdfium2 as pdfium
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .models import UserNotes
+from .serializers import UserNotesSerializer
+from rest_framework import generics
 
 
 # Create your views here.
@@ -23,5 +28,12 @@ def UploadFile(request):
 def UploadImage(request):
     pass
 
-def UploadText(request):
-    pass
+#User Notes
+
+class UserNotesListCreateView(generics.ListCreateAPIView):
+    queryset = UserNotes.objects.all()
+    serializer_class = UserNotesSerializer
+    
+class UserNotesRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserNotes.objects.all()
+    serializer_class = UserNotesSerializer
