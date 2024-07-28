@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _ 
 from .text_summarizer import summarize
+from users.models import User
 
 # Create your models here.
 
@@ -9,6 +10,7 @@ class UserNotes(models.Model):
     notecontents = models.TextField(_("Note Contents"))
     notedatecreated = models.DateTimeField(auto_now_add=True)
     notesummary = models.TextField(_("Note Summary"), blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notes')
     
     def save(self, *args, **kwargs):
         if not self.notesummary:  
