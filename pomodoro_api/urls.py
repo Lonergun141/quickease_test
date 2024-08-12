@@ -6,5 +6,5 @@ router = DefaultRouter()
 router.register(r'', PomodoroViewSet, basename='pomodoro')
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('pomodoro_api/v1/', include(router.urls)),
 ]

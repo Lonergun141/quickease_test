@@ -6,6 +6,6 @@ urlpatterns = [
     path('list/', UploadFile, name='list'),
     
     #UserNotes
-    path('usernotes/', UserNotesListCreateView.as_view(), name='usernotes-list'),
-    path('usernotes/<int:pk>/', UserNotesRetrieveUpdateDestroyView.as_view(), name='usernotes_detail-retrieve-update-destroy'),
+    path('summarizer/usernotes/', UserNotesListCreateView.as_view(), name='usernotes-list'),
+    path('summarizer/usernotes/<int:pk>/', UserNotesRetrieveUpdateDestroyView.as_view(), name='usernotes_detail-retrieve-update-destroy'),
 ]
