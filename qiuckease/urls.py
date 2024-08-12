@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from summarizer_api import views
+from pomodoro_api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/auth/", include('djoser.urls')),
     path("api/v1/auth/", include('djoser.urls.jwt')),
-    path('note_summarizer/api/v1/', include('summarizer_api.urls'))
+    path('note_summarizer/api/v1/', include('summarizer_api.urls')),
+    path('pomodoro_api/api/v1/', include('pomodoro_api.urls'))
 ]

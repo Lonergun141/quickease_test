@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     #Internal Apps
     'users',
     'summarizer_api',
+    'pomodoro_api',
 ]
 
 MIDDLEWARE = [

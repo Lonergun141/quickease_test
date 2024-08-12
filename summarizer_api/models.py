@@ -12,6 +12,10 @@ class UserNotes(models.Model):
     notesummary = models.TextField(_("Note Summary"), blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notes')
     
+    class Meta: 
+        verbose_name = _("User Note")
+        verbose_name_plural = _("User Notes")
+    
     def save(self, *args, **kwargs):
         if not self.notesummary:  
             self.notesummary = summarize(
