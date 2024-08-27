@@ -6,7 +6,6 @@ from rest_framework.decorators import api_view
 from .models import UserNotes
 from .serializers import UserNotesSerializer
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -33,8 +32,7 @@ def UploadImage(request):
 
 class UserNotesListCreateView(generics.ListCreateAPIView):
     serializer_class = UserNotesSerializer
-    permission_classes = [IsAuthenticated]
-    
+
     def get_queryset(self):
         return UserNotes.objects.filter(user=self.request.user)
 
@@ -43,7 +41,29 @@ class UserNotesListCreateView(generics.ListCreateAPIView):
     
 class UserNotesRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserNotesSerializer
-    permission_classes = [IsAuthenticated]
-    
+
     def get_queryset(self):
         return UserNotes.objects.filter(user=self.request.user)
+    
+    def perform_update(self, serializer):
+        instance = serializer.instance
+        data = self.request.data
+
+        # Update only the fields that are present in the request data
+        update_fields = []
+        if 'notetitle' in data:
+            instance.notetitle = data['notetitle']
+            update_fields.append('notetitle')
+        if 'notesummary' in data:
+            instance.notesummary = data['notesummary']
+            update_fields.append('notesummary')
+        if 'notecontents' in data:
+            instance.notecontents = data['notecontents']
+            update_fields.append('notecontents')
+
+        # If no fields were updated, don't save
+        if update_fields:
+            instance.save(update_fields=update_fields)
+
+    def perform_destroy(self, instance):
+        instance.delete()

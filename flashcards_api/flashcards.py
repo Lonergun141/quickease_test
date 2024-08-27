@@ -29,3 +29,4 @@ def generate_flashcards(paragraph):
     flashcards_text = response.choices[0].message.content
 
     return flashcards_text
+
