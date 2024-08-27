@@ -46,10 +46,12 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     'rest_framework_simplejwt',
+    'rest_framework.authtoken',
     #Internal Apps
     'users',
     'summarizer_api',
     'pomodoro_api',
+    'flashcards_api',
 ]
 
 MIDDLEWARE = [
@@ -167,6 +169,7 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
     "SET_PASSWORD_RETYPE": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
     'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,

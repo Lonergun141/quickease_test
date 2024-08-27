@@ -20,8 +20,8 @@ class UserNotes(models.Model):
         if not self.notesummary:  
             self.notesummary = summarize(
                 text=self.notecontents,
-                detail=0.5, 
-                model='gpt-3.5-turbo-1106',
+                detail=1, 
+                model='gpt-4o-mini',
                 additional_instructions="Provide a concise summary of the content."
             )
         super(UserNotes, self).save(*args, **kwargs)

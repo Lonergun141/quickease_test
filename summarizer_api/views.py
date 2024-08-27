@@ -31,9 +31,15 @@ def UploadImage(request):
 #User Notes
 
 class UserNotesListCreateView(generics.ListCreateAPIView):
-    queryset = UserNotes.objects.all()
     serializer_class = UserNotesSerializer
     
+    def get_queryset(self):
+        return UserNotes.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    
 class UserNotesRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = UserNotes.objects.all()
     serializer_class = UserNotesSerializer
+    def get_queryset(self):
+        return UserNotes.objects.filter(user=self.request.user)
