@@ -23,5 +23,6 @@ urlpatterns = [
     path("api/v1/auth/", include('djoser.urls')),
     path("api/v1/auth/", include('djoser.urls.jwt')),
     path('summarizer_api/v1/', include('summarizer_api.urls')),
-    path("", include('pomodoro_api.urls'))
+    path("", include('pomodoro_api.urls')),
+    path("flashcards_api/v1/", include('flashcards_api.urls'))
 ]
