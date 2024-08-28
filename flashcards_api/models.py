@@ -12,7 +12,5 @@ class UserFlashCards(models.Model):
         verbose_name = _("User FlashCard")
         verbose_name_plural = _("User FlashCards")
         
-    def __str__(self):
-        return self.noteID
     
     

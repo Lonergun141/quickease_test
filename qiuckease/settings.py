@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'summarizer_api',
     'pomodoro_api',
     'flashcards_api',
+    'quiz_api',
 ]
 
 MIDDLEWARE = [
