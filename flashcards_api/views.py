@@ -5,15 +5,25 @@ from .models import UserFlashCards
 from summarizer_api.models import UserNotes
 from .serializers import UserNotesSerializer, UserFlashCardsSerializer
 import json
-
+from rest_framework.permissions import IsAuthenticated
 from .flashcards import generate_flashcards
 
 class UserFlashcardsListView(generics.ListAPIView):
     serializer_class = UserFlashCardsSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
         return UserFlashCards.objects.filter(noteID__user=user)
+
+class NoteFlashcardsListView(generics.ListAPIView):
+    serializer_class = UserFlashCardsSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        note_id = self.kwargs['note_id']
+        user = self.request.user
+        return UserFlashCards.objects.filter(noteID_id=note_id, noteID__user=user)
 
 class CreateFlashcardsView(APIView):
     def post(self, request, note_id):
