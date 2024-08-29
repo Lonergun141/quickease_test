@@ -27,5 +27,8 @@ def generate_flashcards(paragraph):
     )
     
     flashcards_text = response.choices[0].message.content
+    
+        
+    print(flashcards_text)
 
     return flashcards_text
