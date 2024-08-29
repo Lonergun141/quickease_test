@@ -8,6 +8,7 @@ class UserNotesSerializer(serializers.ModelSerializer):
         fields = ['id', 'notetitle', 'notecontents', 'notesummary', 'user', 'notedatecreated']
 
 class UserFlashCardsSerializer(serializers.ModelSerializer):
+    note_title = serializers.CharField(source='noteID.notetitle', read_only=True)
     class Meta:
         model = UserFlashCards
         fields = '__all__'

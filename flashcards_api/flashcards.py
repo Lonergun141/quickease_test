@@ -12,7 +12,7 @@ def generate_flashcards(paragraph):
         f"Convert the following paragraph into at least 10 flashcards. "
         f"Generate flashcards with the following structure: Each flashcard should have a 'Term' on the front and a 'Definition' on the back."
         f"Format should be in JSON format: Id:# Front: Term \n Back: Definition"
-        f"Only JSON data is required. No other decoraters are needed."
+        f"Only JSON data is required. No other decorators are needed."
         f"The terms should be related to [specific subject or topic]. Provide concise and accurate definitions for each term."
     )
 
@@ -28,4 +28,20 @@ def generate_flashcards(paragraph):
     
     flashcards_text = response.choices[0].message.content
 
-    return flashcards_text
+    # Remove any leading/trailing whitespace and code block markers
+    flashcards_text = flashcards_text.strip()
+    if flashcards_text.startswith("```") and flashcards_text.endswith("```"):
+        flashcards_text = flashcards_text[3:-3]
+    
+    # Remove any remaining "json" or other language specifiers
+    flashcards_text = flashcards_text.lstrip("json").strip()
+
+    # Parse the JSON
+    try:
+        flashcards = json.loads(flashcards_text)
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        print(f"Received content: {flashcards_text}")
+        return None
+
+    return flashcards
