@@ -12,7 +12,7 @@ def generate_flashcards(paragraph):
         f"Convert the following paragraph into at least 10 flashcards. "
         f"Generate flashcards with the following structure: Each flashcard should have a 'Term' on the front and a 'Definition' on the back."
         f"Format should be in JSON format: Id:# Front: Term \n Back: Definition"
-        f"Only JSON data is required. No other decoraters are needed."
+        f"Only JSON data is required. No other decoraters like ``` are needed."
         f"The terms should be related to [specific subject or topic]. Provide concise and accurate definitions for each term."
     )
 

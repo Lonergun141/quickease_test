@@ -12,8 +12,8 @@ class UserFlashcardsListView(generics.ListAPIView):
     serializer_class = UserFlashCardsSerializer
 
     def get_queryset(self):
-        user_id = self.kwargs['user_id']
-        return UserFlashCards.objects.filter(noteID__user_id=user_id)
+        user = self.request.user
+        return UserFlashCards.objects.filter(noteID__user=user)
 
 class CreateFlashcardsView(APIView):
     def post(self, request, note_id):
@@ -25,7 +25,6 @@ class CreateFlashcardsView(APIView):
 
         JSON_DATA = generate_flashcards(paragraph)
         
-        print(JSON_DATA)
 
         try:
             flashcards_data = json.loads(JSON_DATA)
