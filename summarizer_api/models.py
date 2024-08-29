@@ -22,7 +22,16 @@ class UserNotes(models.Model):
                 text=self.notecontents,
                 detail=1, 
                 model='gpt-4o-mini',
-                additional_instructions="Provide a concise summary of the content."
+               additional_instructions=(
+                "As a professional summarizer, create a concise and comprehensive summary of the provided text, "
+                "be it an article, post, conversation, or passage, while adhering to these guidelines:\n\n"
+                "Craft a summary that is detailed, thorough, in-depth, and complex, while maintaining clarity and conciseness.\n\n"
+                "Incorporate main ideas and essential information, eliminating extraneous language and focusing on critical aspects.\n\n"
+                "Rely strictly on the provided text, without including external information.\n\n"
+                "Format the summary in paragraph form for easy understanding.\n\n"
+                "In other words, include a message counter where you start with #1 and add 1 to the message counter every time I send a message.\n\n"
+                "By following this optimized prompt, you will generate an effective summary that encapsulates the essence of the given text in a clear, concise, and reader-friendly manner."
+                )
             )
         super(UserNotes, self).save(*args, **kwargs)
         
