@@ -6,7 +6,7 @@ from summarizer_api.models import UserNotes
 class UserFlashCards(models.Model):
     noteID = models.ForeignKey(UserNotes, on_delete=models.CASCADE)
     frontCardText = models.CharField(_("Front Card Text"), max_length=100, default="")
-    backCardText = models.CharField(_("Back Card Text"), max_length=100, default="")
+    backCardText = models.CharField(_("Back Card Text"), max_length=500, default="")
     
     class Meta: 
         verbose_name = _("User FlashCard")
