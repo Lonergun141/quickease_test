@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'pomodoro_api',
     'flashcards_api',
     'quiz_api',
+    'imageupload_api',
 ]
 
 MIDDLEWARE = [
