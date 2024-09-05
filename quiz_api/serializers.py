@@ -3,10 +3,10 @@ from .models import UserTest, TestQuestion, TestChoices, ChoiceAnswer
 
 class UserTestSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserFlashCards
+        model = UserTest
         fields = "__all__"
 
-class TestQuestionSerilizer(serializers.ModelSerializer):
+class TestQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestQuestion
         fields = "__all__"

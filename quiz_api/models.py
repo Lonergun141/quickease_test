@@ -5,6 +5,9 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
+
+# User Test Model
+
 class UserTest(models.Model):
     note = models.OneToOneField(UserNotes, on_delete=models.CASCADE, primary_key=True)
     TestScore = models.IntegerField()
@@ -17,6 +20,8 @@ class UserTest(models.Model):
 
     def __str__(self):
         return str(self.note)
+    
+# Test Question Model
 
 class TestQuestion(models.Model):
     test = models.ForeignKey(UserTest, on_delete=models.CASCADE)
@@ -29,6 +34,9 @@ class TestQuestion(models.Model):
     def __str__(self):
         return str(self.test)
     
+
+# Test Choices Model
+
 class TestChoices(models.Model):
     question = models.ForeignKey(TestQuestion, on_delete=models.CASCADE)
     item_choice_text = models.TextField()
@@ -40,7 +48,9 @@ class TestChoices(models.Model):
 
     def __str__(self):
         return str(self.question)
-
+    
+# Choice Answer Model
+    
 class ChoiceAnswer(models.Model):
     answer = models.OneToOneField(TestChoices, on_delete=models.CASCADE, primary_key=True)
 
