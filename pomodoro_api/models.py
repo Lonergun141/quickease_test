@@ -14,3 +14,6 @@ class Pomodoro(models.Model):
     class Meta: 
         verbose_name = _("Pomodoro")
         verbose_name_plural = _("Pomodoro")
+    
+    def __str__(self):
+        return str(self.user)

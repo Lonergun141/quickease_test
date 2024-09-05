@@ -11,6 +11,9 @@ class UserFlashCards(models.Model):
     class Meta: 
         verbose_name = _("User FlashCard")
         verbose_name_plural = _("User FlashCards")
+    
+    def __str__(self):
+        return str(self.noteID) + " " + str(self.frontCardText)
         
     
     
