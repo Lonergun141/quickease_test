@@ -9,10 +9,10 @@ client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
 def generate_flashcards(paragraph):
     prompt = (
-        f"Convert the following paragraph into at least 10 flashcards. "
+        f"Convert the following paragraph into at least 10 only 10 flashcards no need to go beyond. "
         f"Generate flashcards with the following structure: Each flashcard should have a 'Term' on the front and a 'Definition' on the back."
         f"Format should be in JSON format: Id:# Front: Term \n Back: Definition"
-        f"Only JSON data is required. No other decorators are needed."
+        f"Only JSON data is required. No other decoraters like ``` are needed."
         f"The terms should be related to [specific subject or topic]. Provide concise and accurate definitions for each term."
     )
 

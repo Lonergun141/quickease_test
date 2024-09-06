@@ -15,7 +15,7 @@ class UserFlashcardsListView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return UserFlashCards.objects.filter(noteID__user=user)
-    
+       
 class NoteFlashcardsListView(generics.ListAPIView):
     serializer_class = UserFlashCardsSerializer
     permission_classes = [IsAuthenticated]
@@ -83,13 +83,3 @@ class DeleteFlashcardView(APIView):
         flashcard.delete()
         return Response({"status": "success", "message": "Flashcard deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
-class CheckFlashcardsExistView(APIView):
-    def get(self, request, note_id):
-        flashcards_exist = UserFlashCards.objects.filter(noteID_id=note_id).exists()
-        return Response({'exists': flashcards_exist})
-
-class NoteFlashcardsView(APIView):
-    def get(self, request, note_id):
-        flashcards = UserFlashCards.objects.filter(noteID_id=note_id)
-        serializer = UserFlashCardsSerializer(flashcards, many=True)
-        return Response(serializer.data)
