@@ -22,9 +22,15 @@ class UserNotes(models.Model):
         if not self.notesummary:  
             self.notesummary = summarize(
                 text=self.notecontents,
-                detail=1, 
+                detail=0.75, 
                 model='gpt-4o-mini',
-                additional_instructions="Provide a concise summary of the content."
+                additional_instructions='''You are a professional tutor and you are reading the provided material to generate comprehensive summary notes for my upcoming test.
+
+                                        Generate a summary notes that is clear, concise, and easy to understand.
+
+                                        The summary notes should contain overview summary (a brief, high-level overview of the main topic covered in the material. Focus on summarizing the core ideas and key concepts in 2-3 sentences), and Detailed Breakdown with Key Points (Break the topic into logical sections or themes. For each section, list the key points or takeaways in a bulleted or numbered format for easy reading). Use h2 as section headers for Overview Summary and Key Points.
+                                        ''',
+                summarize_recursively=True
             )
             self.notetitle = generate_title(self.notesummary)
         super(UserNotes, self).save(*args, **kwargs)
